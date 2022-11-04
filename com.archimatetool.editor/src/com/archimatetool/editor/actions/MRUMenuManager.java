@@ -187,7 +187,7 @@ public class MRUMenuManager extends MenuManager implements PropertyChangeListene
         // File is in temp folder
         try {
             File tmpDir = new File(System.getProperty("java.io.tmpdir"));
-            return file.getCanonicalPath().startsWith(tmpDir.getCanonicalPath());
+            return file.getCanonicalFile().toPath().startsWith(tmpDir.getCanonicalFile().toPath());
         }
         catch(IOException ex) {
             ex.printStackTrace();
