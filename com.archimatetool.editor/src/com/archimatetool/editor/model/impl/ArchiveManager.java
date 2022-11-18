@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -36,7 +37,6 @@ import com.archimatetool.editor.utils.FileUtils;
 import com.archimatetool.model.IArchimateModel;
 import com.archimatetool.model.IDiagramModelImageProvider;
 import com.archimatetool.model.util.ArchimateResourceFactory;
-
 
 
 /**
@@ -280,7 +280,7 @@ public class ArchiveManager implements IArchiveManager {
      */
     private void saveModelFile(ZipOutputStream zOut) throws IOException {
         // Temp file for xml model file
-        File tmpFile = File.createTempFile("archi-", null); //$NON-NLS-1$
+        File tmpFile = Files.createTempFile("archi-", null).toFile(); //$NON-NLS-1$
         tmpFile.deleteOnExit();
         saveResource(tmpFile);
         

@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -26,8 +27,6 @@ import com.archimatetool.editor.utils.FileUtils;
 import com.archimatetool.editor.utils.StringUtils;
 import com.archimatetool.editor.utils.ZipUtils;
 import com.archimatetool.jdom.JDOMUtils;
-
-
 
 
 /**
@@ -188,7 +187,7 @@ public abstract class AbstractTemplate implements ITemplate, ITemplateXMLTags {
         }
         
         // Open a zip stream
-        File tmpFile = File.createTempFile("architemplate", null);
+        File tmpFile = Files.createTempFile("architemplate", null).toFile();
         BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(tmpFile));
         ZipOutputStream zOut = new ZipOutputStream(out);
         

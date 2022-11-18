@@ -7,6 +7,7 @@ package com.archimatetool.commandline.providers;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
@@ -82,7 +83,7 @@ public class CreateEmptyModelProvider extends AbstractCommandLineProvider {
             throw new IOException(NLS.bind(Messages.CreateEmptyModelProvider_3, template));
         }
         
-        File tmp = File.createTempFile("~architemplate", null); //$NON-NLS-1$
+        File tmp = Files.createTempFile("~architemplate", null).toFile(); //$NON-NLS-1$
         tmp.deleteOnExit();
 
         File file = ZipUtils.extractZipEntry(fileTemplate, "model.archimate", tmp); //$NON-NLS-1$

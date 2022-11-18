@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -44,7 +45,6 @@ import com.archimatetool.templates.model.ITemplateGroup;
 import com.archimatetool.templates.model.ITemplateXMLTags;
 import com.archimatetool.templates.model.TemplateManager;
 import com.archimatetool.templates.wizard.TemplateUtils;
-
 
 
 /**
@@ -213,7 +213,7 @@ public class SaveCanvasAsTemplateWizard extends Wizard {
     }
     
     private File saveModelToTempFile() throws IOException {
-        File tmpFile = File.createTempFile("architemplate", null); //$NON-NLS-1$
+        File tmpFile = Files.createTempFile("architemplate", null).toFile(); //$NON-NLS-1$
         tmpFile.deleteOnExit();
         
         fModel.setFile(tmpFile);

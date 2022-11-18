@@ -12,6 +12,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,6 @@ import com.archimatetool.editor.diagram.dnd.DiagramDropRequest;
 import com.archimatetool.editor.model.IArchiveManager;
 import com.archimatetool.editor.utils.PlatformUtils;
 import com.archimatetool.model.IDiagramModel;
-
 
 
 /**
@@ -130,7 +130,7 @@ public class CanvasDNDEditPolicy extends AbstractDNDEditPolicy {
         // Online URL that we should download to a temporary file
         else {
             // Download and save to temporary file
-            file = File.createTempFile("archi-", s.substring(s.lastIndexOf(".")));
+            file = Files.createTempFile("archi-", s.substring(s.lastIndexOf("."))).toFile();
             file.deleteOnExit();
             
             try(FileOutputStream fos = new FileOutputStream(file)) {
